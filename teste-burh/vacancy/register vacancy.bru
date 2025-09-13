@@ -1,0 +1,26 @@
+meta {
+  name: register vacancy
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base}}/vacancy/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "php 8.1",
+    "description": "vaga senior php and laravel",
+    "type": "internship",
+    "salary": "1212",
+    "working_hours": "6",
+    "company_id": "3"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

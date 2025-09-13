@@ -1,0 +1,22 @@
+meta {
+  name: applicate
+  type: http
+  seq: 2
+}
+
+post {
+  url: {{base}}/application/register
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "user_id": "1",
+    "vacancy_id": "2"
+  }
+}
+
+settings {
+  encodeUrl: true
+}

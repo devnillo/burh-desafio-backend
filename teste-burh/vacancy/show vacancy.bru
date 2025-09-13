@@ -1,0 +1,26 @@
+meta {
+  name: show vacancy
+  type: http
+  seq: 2
+}
+
+get {
+  url: {{base}}/vacancy/2
+  body: json
+  auth: inherit
+}
+
+body:json {
+  {
+    "title": "php 8.1",
+    "description": "vaga senior php and laravel",
+    "type": "internship",
+    "salary": "1212",
+    "working_hours": "6",
+    "company_id": ""
+  }
+}
+
+settings {
+  encodeUrl: true
+}
