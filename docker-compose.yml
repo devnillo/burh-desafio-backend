@@ -2,7 +2,7 @@ version: '3.8'
 
 services:
   postgres:
-    image: postgres:15
+    image: postgres:17
     container_name: postgres-burh
     restart: always
     environment:
@@ -14,20 +14,18 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
 
-  pgadmin:
-    image: dpage/pgadmin4
-    container_name: pgadmin-burh
+  app:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: app-burh
     restart: always
-    environment:
-      PGADMIN_DEFAULT_EMAIL: admin@admin.com
-      PGADMIN_DEFAULT_PASSWORD: admin123
     ports:
-      - "8080:80"
+      - "3000:80"
+    volumes:
+      - .:/var/www/html
     depends_on:
       - postgres
-    volumes:
-      - pgadmin_data:/var/lib/pgadmin
 
 volumes:
   postgres_data:
-  pgadmin_data:
