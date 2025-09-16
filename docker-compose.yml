@@ -1,31 +1,30 @@
 version: '3.8'
 
 services:
-  postgres:
-    image: postgres:17
-    container_name: postgres-burh
-    restart: always
-    environment:
-      POSTGRES_USER: user
-      POSTGRES_PASSWORD: password
-      POSTGRES_DB: teste
-    ports:
-      - "5432:5432"
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   app:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: app-burh
-    restart: always
+    container_name: laravel-app
     ports:
-      - "3000:80"
+      - "8000:8000"
     volumes:
-      - .:/var/www/html
+      - ./:/var/www/html
     depends_on:
-      - postgres
+      - db
+
+  db:
+    image: postgres:17
+    container_name: laravel-db
+    restart: always
+    environment:
+      POSTGRES_DB: laravel
+      POSTGRES_USER: laravel
+      POSTGRES_PASSWORD: secret
+    ports:
+      - "5432:5432"
+    volumes:
+      - db-data:/var/lib/postgresql/data
 
 volumes:
-  postgres_data:
+  db-data:
