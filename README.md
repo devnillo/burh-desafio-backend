@@ -10,7 +10,7 @@ Desenvolver uma **API REST** para um sistema de vagas de emprego, permitindo que
 
 -   **Laravel** 12+
 -   **PHP** 8.2+
--   **Banco de Dados**: MySQL ou PostgreSQL
+-   **Docker**
 
 ---
 
@@ -27,6 +27,10 @@ Desenvolver uma **API REST** para um sistema de vagas de emprego, permitindo que
 -   **Mostrar Vaga pelo ID**
 
     -   **Endpoint**: `GET /api/vacancy/{id}`
+-   **Mostrar Todas as Vagas Cadastradas**
+
+    -   **Endpoint**: `GET /api/vacancy/all`
+    
 
 -   **Criar Vaga**
     -   **Endpoint**: `POST /api/vacancy/register`
@@ -61,8 +65,9 @@ Um arquivo **`docker-compose.yml`** já está incluído no repositório para fac
 ## ▶️ Como Rodar o Projeto
 
 1. Clone o repositório.
-2. Execute `docker-compose up -d` para rodar o PostgreSQL.
-3. Instale as dependências com `composer install`.
-4. Configure o arquivo `.env` para apontar para o banco de dados no Docker.
-5. Execute as migrations com `php artisan migrate`.
-6. Inicie o servidor com `php artisan serve`.
+2. Execute `docker-compose up -d --build` para rodar os containers.
+3. Instale as dependências com `docker exec -it laravel-app composer install`.
+4. gere a key: `docker exec -it laravel-app php artisan key:generate`.
+5. Execute as migrations com `docker exec -it laravel-app php artisan migrate`.
+
+A API ficará exposta por padrão em http://localhost:8000/api/. Caso não esteja acessível nessa rota, rode:`docker exec -it laravel-app php artisan serve --host=0.0.0.0 --port=8000`
