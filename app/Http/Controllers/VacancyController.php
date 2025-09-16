@@ -23,11 +23,23 @@ class VacancyController extends Controller
         $vacancy = Vacancy::create($credentials);
         return ApiResponse::success(new VacancyResource($vacancy), 'Successfully registered job');
     }
+    public function ShowAllVacancies()
+    {
+        
+        $vacancies = Vacancy::all();
+        if ($vacancies->isEmpty()) {
+            return ApiResponse::error('Vacancies not exists', 404);
+        }
+        return ApiResponse::success(VacancyResource::collection($vacancies), 'success in finding a job');
+    }
     public function show($id)
     {
         
         $vacancy = Vacancy::with('users')->find($id);
+        if(!$vacancy){
+            return ApiResponse::error('Vacancy not exists', 404);
+        }
 
-        return ApiResponse::success(new VacancyResource($vacancy), 'success in finding a job');
+        return ApiResponse::success(new VacancyResource($vacancy), 'success in finding a Vacancy');
     }
 }
