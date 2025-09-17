@@ -66,8 +66,7 @@ Um arquivo **`docker-compose.yml`** já está incluído no repositório para fac
 
 1. Clone o repositório.
 2. Execute `docker-compose up -d --build` para rodar os containers.
-3. Instale as dependências com `docker exec -it laravel-app composer install`.
-4. gere a key: `docker exec -it laravel-app php artisan key:generate`.
-5. Execute as migrations com `docker exec -it laravel-app php artisan migrate`.
+3. gere a key: `docker exec -it laravel-app php artisan key:generate`.
+4. Execute as migrations com `docker exec -it laravel-app php artisan migrate`.
 
 A API ficará exposta por padrão em http://localhost:8000/api/. Caso não esteja acessível nessa rota, rode:`docker exec -it laravel-app php artisan serve --host=0.0.0.0 --port=8000`
